@@ -1,0 +1,628 @@
+/* 기본 리셋 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    background-color: #fff;
+    color: #333;
+    overflow-x: hidden;
+}
+
+/* 전체 콘텐츠 컨테이너: 가운데 정렬 */
+.main-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* 1. 헤더 및 네비게이션 */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+/* 로고 이미지 컨테이너 스타일 */
+.logo-container {
+    display: flex;
+    align-items: center;
+    height: 30px; 
+}
+/* 로고 이미지 스타일 */
+.logo-img {
+    height: 100%; 
+    width: auto; 
+    object-fit: contain; 
+}
+
+.nav {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.nav ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+
+.nav-item {
+    position: relative; 
+    margin: 0 15px;
+}
+
+.nav-item a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    padding: 10px 0;
+    display: block;
+}
+
+.download-btn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* 2. 풀-와이드 드롭다운 메뉴 스타일 */
+.dropdown-menu-full {
+    position: fixed;
+    top: 60px; 
+    left: 0;
+    width: 100%;
+    height: 0; 
+    background-color: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    overflow: hidden; 
+    transition: height 0.3s ease-in-out;
+    z-index: 90;
+}
+
+.dropdown-menu-full.visible {
+    height: 350px; 
+}
+
+.menu-content-full {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 30px 50px;
+    display: flex;
+    gap: 50px;
+}
+
+.menu-content-full h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.dropdown-links {
+    display: flex;
+    flex-direction: column;
+    min-width: 200px;
+}
+.dropdown-links a {
+    text-decoration: none;
+    color: #333;
+    padding: 8px 0;
+    font-size: 16px;
+}
+.dropdown-links a:hover {
+    color: #007bff;
+}
+
+.dropdown-promo {
+    flex-grow: 1;
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+
+/* 3. 첫 번째 Swiper: 메인 히어로 섹션 스타일 */
+.hero-swiper-section {
+    position: relative;
+    padding-bottom: 0;
+}
+.hero-swiper {
+    width: 100%;
+    height: 70vh; 
+    background-color: #f0f0f0; 
+}
+
+.hero-slide {
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-start; /* 기본 좌측 정렬 */
+}
+
+/* 텍스트+이미지 타입 슬라이드 (첫 번째 슬라이드) */
+.hero-slide.type-text-image .content-left {
+    flex: 1; /* 50% 차지 */
+    padding: 80px 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #fff; 
+}
+.hero-slide.type-text-image .content-right {
+    flex: 1; /* 50% 차지 */
+    position: relative; 
+    overflow: hidden; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+}
+.hero-slide.type-text-image .content-right::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; 
+    height: 100%; 
+    clip-path: polygon(10% 0%, 100% 0%, 100% 100%, 0% 100%); 
+    z-index: 1;
+}
+
+/* 풀 이미지 타입 슬라이드 (두 번째, 세 번째 슬라이드) */
+.hero-slide.type-full-image {
+    justify-content: center; /* 이미지를 중앙 정렬 */
+}
+.hero-slide.type-full-image .content-left {
+    display: none; /* 텍스트 영역 숨김 */
+}
+.hero-slide.type-full-image .content-right {
+    flex: 0 0 100%; /* 이미지가 전체 너비 차지 */
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.hero-slide.type-full-image .content-right::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #007bff; 
+    clip-path: polygon(70% 0%, 100% 0%, 100% 100%, 0% 100%); 
+    z-index: 1;
+}
+
+/* Hero Swiper 슬라이드별 배경색 오버라이드 */
+.hero-slide-1 .content-right {
+    background-color: #0d1222; 
+}
+
+/* ⭐️ Hero Swiper 이미지 (꽉 채우기) */
+.hero-main-img {
+    width: 100%; 
+    max-height: 100%; 
+    object-fit: contain; 
+    display: block;
+    z-index: 2; 
+    position: relative; 
+}
+
+
+.sub-nav span {
+    display: inline-block;
+    padding: 5px 10px;
+    margin-right: 10px;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+}
+.sub-nav span:first-child {
+    border-bottom-color: #007bff; 
+}
+
+/* Hero Swiper 슬라이드 내의 버튼 디자인 (모두 보기와 동일하게) */
+.hero-slide .cta-btn {
+    background-color: #333; 
+    color: #fff; 
+    padding: 15px 40px; 
+    font-size: 18px; 
+    font-weight: bold;
+    border: none;
+    border-radius: 5px; 
+    margin-top: 30px; 
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: auto; 
+    display: inline-block;
+    text-decoration: none; 
+}
+.hero-slide .cta-btn:hover {
+    background-color: #555; 
+}
+
+
+/* 아이콘 리스트 */
+.icon-list {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    padding: 30px 50px;
+    position: relative;
+    z-index: 10;
+}
+.icon-item {
+    text-align: center;
+    font-size: 18px;
+}
+/* 아이콘 이미지 크기 조정 */
+.icon-item img {
+    width: 40px;     
+    height: 40px;    
+    display: block;  
+    margin: 0 auto 5px auto; 
+    object-fit: contain; 
+}
+
+/* Swiper 네비게이션 스타일 추가 */
+.hero-prev, .hero-next {
+    color: #333 !important;
+    top: 50%;
+}
+.hero-prev { left: 10px; }
+.hero-next { right: 10px; }
+
+
+/* 4. 중간 콘텐츠 섹션 (ScrollReveal 영역) */
+.middle-section {
+    padding: 80px 50px;
+}
+
+.content-block {
+    display: flex;
+    margin-bottom: 100px;
+    gap: 40px;
+    position: relative;
+    overflow: visible; 
+    min-height: 500px;
+}
+
+/* 텍스트 침범 방지 및 가독성 확보 */
+.text-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px; 
+    z-index: 3; /* 텍스트가 파란 박스 위에 위치 */
+    background-color: #fff; 
+    position: relative; 
+}
+
+.image-area {
+    flex: 1;
+    position: relative;
+    z-index: 3; /* 이미지도 파란 박스 위에 위치 */
+    display: flex;
+    align-items: center;
+}
+
+/* 중간 섹션 내의 모든 이미지 크기 조정 및 비율 유지 */
+.image-area img {
+    width: 100%;
+    height: auto;
+    display: block;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    object-fit: cover; 
+    max-height: 400px; 
+}
+
+/* G HUB 기본 사항: 파란 박스 */
+.g-hub-info::after {
+    content: "";
+    position: absolute;
+    top: 50px;
+    right: 0;
+    width: 60%;
+    height: 60%;
+    background-color: #007bff;
+    z-index: 2; /* 텍스트(3), 이미지(3)보다 아래에 위치 */
+}
+
+/* KEYCONTROL 섹션: 파란색 배경 박스 복구 (왼쪽 절반) */
+.key-control {
+    flex-direction: row-reverse;
+}
+.key-control::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60%; 
+    height: 100%;
+    background-color: #007bff;
+    z-index: 1; 
+}
+
+/* HERO 2 센서: 파란색 배경 박스 복구 (오른쪽 절반) */
+.hero-sensor::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60%;
+    height: 100%;
+    background-color: #007bff;
+    z-index: 1; 
+}
+
+
+/* 5. 제품 목록 섹션 스타일 (이미지 칸만) */
+.product-slider-section {
+    padding: 80px 0;
+    background-color: #007bff; 
+    text-align: center;
+    color: #fff;
+}
+.product-slider-section .container {
+    padding: 0 50px; 
+}
+.product-swiper {
+    padding-bottom: 60px; 
+    width: 100%;
+}
+.product-card {
+    background-color: #fff;
+    color: #333;
+    border-radius: 8px;
+    padding: 20px;
+    height: 300px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+}
+/* 제품 카드 내 이미지 크기 조정 (튀어나옴 방지) */
+.product-card img {
+    width: 100%;
+    max-width: 250px; 
+    height: 180px; 
+    object-fit: contain; 
+}
+.swiper-pagination-bullet {
+    background: #fff !important; 
+}
+.shop-btn {
+    background-color: #333;
+    color: #fff;
+    padding: 15px 40px; 
+    font-size: 18px; 
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    margin-top: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.shop-btn:hover {
+    background-color: #555;
+}
+
+/* 6. Streamlabs 섹션 및 7. BLUE VOICE 섹션 버튼 스타일 */
+.streamlabs-info .cta-btn,
+.blue-voice .cta-btn {
+    background-color: #007bff; 
+    color: #fff; 
+    padding: 8px 20px;
+    border: none;
+    border-radius: 5px; 
+    cursor: pointer;
+    font-size: 16px; 
+    margin-top: 20px;
+    font-weight: bold;
+    width: auto; 
+    display: inline-block;
+}
+
+/* BLUE VOICE 섹션은 배경이 파란색이므로 버튼 색상을 반전 */
+.blue-voice .cta-btn {
+    background-color: #007bff;
+    color: #fff
+}
+
+.streamlabs-info {
+    flex-direction: row; 
+    padding: 100px 50px;
+}
+.streamlabs-info .image-area {
+    position: relative;
+}
+.rounded-image-wrapper {
+    position: absolute;
+    bottom: -50px; 
+    right: -50px; 
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+.rounded-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.blue-voice {
+    flex-direction: row-reverse; 
+    background-color: #007bff;
+    color: #000;
+    padding: 100px 50px;
+    margin-bottom: 0;
+}
+
+
+/* ------------------------------------------- */
+/* ⭐️ 8. 푸터 (FOOTER) 스타일 */
+/* ------------------------------------------- */
+
+.main-footer {
+    background-color: #f7f7f7;
+    color: #555;
+    padding: 40px 0;
+    font-size: 14px;
+}
+
+.footer-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 50px;
+}
+
+/* 8-1. 상단 링크 영역 */
+.footer-links {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.link-column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 20%; 
+}
+
+.link-column a {
+    color: #555;
+    text-decoration: none;
+    transition: color 0.2s;
+    font-weight: 500;
+}
+
+.link-column a:first-child {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.link-column a:hover {
+    color: #000;
+}
+
+
+/* 8-2. 구독 및 소셜 미디어 영역 */
+.footer-subscribe {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 40px;
+}
+
+.subscribe-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    width: 350px;
+}
+
+.email-input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    font-size: 14px;
+    box-shadow: none;
+}
+
+.subscribe-btn {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+.subscribe-btn:hover {
+    background-color: #000;
+}
+
+.privacy-check {
+    width: 350px;
+    margin-top: -10px;
+}
+
+.privacy-check input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+.privacy-check label, .privacy-check a {
+    font-size: 13px;
+    line-height: 1.4;
+    color: #555;
+}
+
+.privacy-check a {
+    display: inline-block;
+    color: #007bff;
+    text-decoration: underline;
+    margin-top: 5px;
+}
+
+.social-links {
+    display: flex;
+    gap: 20px;
+    font-size: 20px;
+    color: #333;
+}
+
+.social-links a {
+    color: #333;
+    transition: color 0.2s;
+}
+.social-links a:hover {
+    color: #007bff;
+}
+
+/* 8-3. 하단 정보 영역 */
+.footer-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+}
+
+.support-id {
+    color: #888;
+    font-size: 12px;
+}
+
+.support-id span {
+    font-weight: bold;
+    color: #555;
+}
+
+.support-id i {
+    font-size: 10px;
+    margin-left: 5px;
+}
+
+.copyright {
+    font-size: 12px;
+    color: #888;
+}
